@@ -1902,7 +1902,7 @@ const CalendarPage = () => {
                             <div className="min-w-[800px]">
                                 {/* Header Row */}
                                 <div
-                                    className="sticky top-0 z-10 grid bg-white border-b-2 border-gray-200 shadow-sm"
+                                    className="sticky top-0 z-40 grid bg-white border-b-2 border-gray-200 shadow-sm"
                                     style={{ gridTemplateColumns: `100px repeat(${filteredTeamMembers.length}, 1fr)` }}
                                 >
                                     <div className="p-4 border-r border-gray-200 bg-white/80 backdrop-blur-sm sticky left-0 z-20"></div>
@@ -2195,13 +2195,17 @@ const CalendarPage = () => {
                                                         previewTime = format(calculatedTime, 'HH:mm');
                                                     }
 
+                                                    // Check if this slot is active for dragging (either source or target)
+                                                    const isActiveDragSlot = (draggedAppointment && appointmentAtSlot && draggedAppointment.id === appointmentAtSlot.id) ||
+                                                        (dragPosition && dragPosition.member.id === member.id && dragPosition.time === time);
+
                                                     return (
                                                         <motion.div
                                                             key={`${member.id}-${time}`}
                                                             className={`h-[60px] border-r border-b border-gray-200 relative p-1.5 transition-colors ${isHourMark ? 'bg-gray-50/30' : 'bg-white'
                                                                 } ${isPastSlot ? 'bg-gray-100/50 opacity-60' : 'hover:bg-pink-50/30'} ${isDragOver && !wouldOverlap ? 'bg-[#008000]/20 border-2 border-[#008000] border-dashed' : ''
                                                                 } ${isDragOver && wouldOverlap ? 'bg-red-100/50 border-2 border-red-400 border-dashed' : ''
-                                                                }`}
+                                                                } ${isActiveDragSlot ? 'z-40' : ''}`}
                                                             onDragOver={(e) => {
                                                                 if (!isPastSlot) {
                                                                     handleDragOver(e, member, time);
@@ -2307,7 +2311,7 @@ const CalendarPage = () => {
                                                                             y: 0
                                                                         }}
                                                                         transition={{ duration: isDragging ? 0.1 : 0.2 }}
-                                                                        className={`absolute left-1.5 right-1.5 rounded-lg overflow-visible cursor-move transition-all shadow-md hover:shadow-xl ${isDragging ? 'z-10' : 'z-20'
+                                                                        className={`absolute left-1.5 right-1.5 rounded-lg overflow-visible cursor-move transition-all shadow-md hover:shadow-xl ${isDragging ? 'z-50' : 'z-20'
                                                                             }`}
                                                                         style={{
                                                                             height: displayHeight,
@@ -2451,10 +2455,10 @@ const CalendarPage = () => {
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             className="absolute left-0 right-0 z-30 pointer-events-none flex items-center"
-                                            style={{ top: `${timeIndicatorTop + 128}px` }}
+                                            style={{ top: `${timeIndicatorTop}px`, transform: 'translateY(-50%)' }}
                                         >
-                                            <div className="absolute left-0 right-0 h-0.5 bg-[#008000]"></div>
-                                            <div className="flex items-center gap-2 ml-0">
+                                            <div className="absolute left-0 right-0 h-0.5 bg-[#008000] pointer-events-none"></div>
+                                            <div className="flex items-center gap-2 ml-0 pointer-events-none">
                                                 <div className="w-3 h-3 bg-[#008000] rounded-full shadow-lg shadow-[#008000]/50 ring-2 ring-white"></div>
                                                 <div className="text-xs font-semibold bg-[#008000] text-white px-2 py-0.5 rounded-full shadow-md">
                                                     {format(currentTime, 'HH:mm')}
