@@ -161,7 +161,7 @@ const Login = () => {
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-gray-700">Email</Label>
+            <Label htmlFor="email" className="text-gray-700">Email - Demo: demo@admin.com</Label>
             <Input
               id="email"
               type="email"
@@ -174,7 +174,7 @@ const Login = () => {
           </div>
 
           <div className="space-y-2 relative">
-            <Label htmlFor="password" className="text-gray-700">Password</Label>
+            <Label htmlFor="password" className="text-gray-700">Password Demo:12345678</Label>
             <Input
               id="password"
               type={showPassword ? 'text' : 'password'}
