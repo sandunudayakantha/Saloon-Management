@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-gray-900;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 224.3 76.3% 48%;
+    --radius: 0.5rem;
+  }
+}
+
+.rdp {
+  --rdp-cell-size: 44px;
+  --rdp-caption-font-size: 18px;
+  --rdp-background-color: transparent;
+  --rdp-accent-color: #ec4899;
+  --rdp-accent-color-dark: #be185d;
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+  --rdp-border-radius: 0.75rem;
+}
+.rdp-months {
+  @apply text-gray-900;
+}
+.rdp-caption {
+  @apply mb-4;
+}
+.rdp-caption_label {
+  @apply text-gray-900 font-bold text-lg;
+}
+.rdp-nav {
+  @apply gap-2;
+}
+.rdp-button_previous,
+.rdp-button_next {
+  @apply rounded-lg hover:bg-gray-100 transition-colors;
+}
+.rdp-head_cell {
+  @apply text-gray-600 font-semibold text-sm;
+}
+.rdp-cell {
+  @apply text-gray-900;
+}
+.rdp-button {
+  @apply rounded-lg transition-all hover:bg-gray-100 font-medium;
+}
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  @apply bg-gray-100 scale-105;
+}
+.rdp-day_today {
+  @apply text-[#008000] font-bold ring-2 ring-[#008000]/30;
+}
+.rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+    @apply bg-[#008000] text-white font-bold shadow-lg shadow-[#008000]/30;
+}
+.rdp-day_outside {
+  @apply text-gray-300;
+}
